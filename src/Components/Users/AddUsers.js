@@ -7,13 +7,17 @@ import Wrapper from "../Helpers/Wrapper";
 const AddUser = (props) => {
 const nameInputRef=useRef();
 const ageInputRef=useRef();
-  
+ const collegenameInputRef=useRef() ;
   const [error, setError] = useState();
   const addUserHandler = (event) => {
     event.preventDefault();
     const enteredName=nameInputRef.current.value;
     const enteredUserAge=ageInputRef.current.value;
-    if (enteredName.trim().length === 0 || enteredUserAge.trim().length === 0) {
+    const enteredCollegeName=collegenameInputRef.current.value;
+    if (enteredName.trim().length === 0 || 
+    enteredUserAge.trim().length === 0 ||
+    enteredCollegeName.trim().length===0)
+     {
       setError({
         title: "Invalid Input",
         message: "Please eneter a valid name and age (non-Empty values)",
@@ -31,11 +35,13 @@ const ageInputRef=useRef();
     const userData = {
       name: enteredName,
       age: enteredUserAge,
+      collegename:enteredCollegeName,
       id: Math.random().toString(),
     };
     props.onSave(userData);
     nameInputRef.current.value= '';
     ageInputRef.current.value= '';
+    collegenameInputRef.current.value='';
   };
   
   const errorHandler = () => {
@@ -66,6 +72,14 @@ const ageInputRef=useRef();
 
                ref={ageInputRef}
             />
+            <label htmlFor="collegename">College Name</label>
+            <input
+              type="text"
+              id="collegename"
+              
+              ref={collegenameInputRef}
+            />
+
             <Button type="submit">Add User </Button>
           </form>
         </Card>
