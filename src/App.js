@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,Fragment} from 'react';
 import AddUser from "./Components/Users/AddUsers";
 //import "./App.css";
 import UserList from "./Components/Users/UsersList";
@@ -12,10 +12,10 @@ function App() {
   };
   console.log(userData);
   return (
-    <div>
+    <Fragment>
       <AddUser onSave={UserDataHandler} />
       <UserList users={userData} />
-    </div>
+    </Fragment>
   );
 }
 export default App;
